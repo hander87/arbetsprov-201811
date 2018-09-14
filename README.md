@@ -4,6 +4,7 @@
 ## Uppgift
 
 [X] Write a javascript program that as input takes a JSON object. 
+
 [X] Returns it with all key/values switched and the (new) value reversed as a string.
 
 {"person": "beans"}
