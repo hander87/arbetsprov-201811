@@ -6,13 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Arbetsprov, September 2018</title>
     <script src="script.js" defer></script>
+
+    <!-- Sidenote: for supporting older browsers, a javascript compiler 
+        is required to support ES6 arrow function, such as babel.
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+
 </head>
 <body onload="getPersons()">
     <h1>JSON Data Output:</h1>
-    <h3>Raw Data from JSON file. (See console for more info)</h3>
+    <h3>Raw Data from JSON file. (Displayed in JSON and string format). (See console for more info)</h3>
     <div id="dataOriginal"></div>
-    <h3>Click button to reverse JSON data and output</h3>
-    <button onclick="reversePersons()">Reverse JSON</button>
+    <hr>
+    <h3>Click button to reverse JSON data and output below. (Displayed in JSON and string format)</h3>
+    <button onclick="reversePersons()">CLICK to Reverse JSON</button>
     <div id="dataOutput"></div>
 </body>
+
 </html>
