@@ -31,6 +31,7 @@ function getPersons() {
 }
 
 function reversePersons() {
+  reversedOutput.innerHTML = '';
   fetch(JSON_SOURCE)
     .then(response => response.json())
     .then(posts => {
@@ -59,21 +60,50 @@ function reversePersons() {
       }
       // Transorm array back into string
       reversedJson = reversedJson.join('');
-      console.log(reversedJson);
+      console.log('Transorm array back into string', reversedJson);
+
+      // CORRECTION: Flip the Key Value proccess, so we get {"beans":"nosrep"}
+      // New array to store objects in later
+      let newObjectsArray = [];
+      reversedJson = JSON.parse(reversedJson);
+
+      // Split our JSON into its objects
+      reversedJson.forEach(eachObject => {
+
+        // New empty object to store values in later
+        let newObjects = {};
+        // Object.keys() grabs the key values
+        let objectKeys = Object.keys(eachObject);
+
+        // Loops through each key value it gets
+        for (let i = 0; i < objectKeys.length; i++) {
+
+          // Takes the key value, and reverses it
+          objectRevKey = objectKeys[i].split('').reverse().join('');
+
+          // The new key gets its original value - then it is pushed into the empty array.
+          newObjects[objectRevKey] = eachObject[objectKeys[i]];
+        }
+        // When loop is complete, the objects is pushed into the empty array.
+        newObjectsArray.push(newObjects);
+      });
+
+      // The key value is now flipped and goes through output process!
+      newObjectsArray = JSON.stringify(newObjectsArray);
 
       // Create Output for Reversed JSON
       const div = document.createElement('div');
       const p = document.createElement('p');
-      p.textContent = reversedJson;
+      p.textContent = newObjectsArray;
       div.appendChild(p);
       reversedOutput.appendChild(div);
 
       // Transform back to JSON format
-      reversedJson = JSON.parse(reversedJson);
-      console.log(reversedJson);
+      newObjectsArray = JSON.parse(newObjectsArray);
+      console.log(newObjectsArray);
 
       // Create Output for Reversed JSON elements
-      reversedJson.forEach(person => {
+      newObjectsArray.forEach(person => {
         const div = document.createElement('div');
         const li = document.createElement('li');
         li.textContent = JSON.stringify(person);
